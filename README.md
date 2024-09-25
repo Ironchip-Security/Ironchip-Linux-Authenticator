@@ -41,7 +41,7 @@ Location-based reporting system to alert of sim swapping, phishing, device switc
 
 ## Download
 
-Download the latest installer (`.pkg`) version from [Release](https://github.com/Ironchip-Security/Ironchip-Linux-Authenticator/releases).
+Download the latest installer (`.deb`) version from [Release](https://github.com/Ironchip-Security/Ironchip-Linux-Authenticator/releases).
 
 ## Desktop Application
 
@@ -55,93 +55,48 @@ Communication for authentication is done over a double-encrypted channel which i
 ### Installing process
 
 To install the Ironchip Authenticator into your device:
- - Navigate to the folder that contains the downloaded file and open it to launch the installation program:
-   
-   <p align="center">
-     <img alt="Installer first view" src="./assets/first-view.png" width="350"/>
-   </p>
+
+  ```bash
+      sudo dpkg -i <path to .deb file >
+  ```
    
  - To ensure security, you will be prompted to enter your password. This authorizes the operation and allows the installation to proceed.
 
-   <p align="center">
-     <img alt="Installer touch id" src="./assets/touch-id.png" width="350"/>
-   </p>
-
  - Once the installation process is finished. All you need to do is [enroll the device](https://knowledge.ironchip.com/en/aplicaci%C3%B3n-de-escritorio#registro), and you are good to go.
 
-   <p align="center">
-     <img alt="Installer completed view" src="./assets/finished.png" width="350"/>
-   </p>
-   
-### Additional information to ensure optimal use of the application
-
-**Location Permissions:** Make sure to grant location permissions. It serves to enhance the Intrusion Detection System (IDS) and provide more effective alerts regarding SIM card changes, phishing attempts, device switches, and other suspicious or fraudulent actions.
-
-Navigate to System Settings, click on Privacy & Security in the sidebar, and then select Location Services on the right.” 
-System Settings, click Privacy & Security in the sidebar, then click Location Services on the right.
-   <p align="center">
-     <img alt="Installer first view" src="./assets/enable-location.png" width="350"/>
-   </p>
-   
-**Notifications:** Enable notifications to receive important alerts.
-
-To change these settings, choose Apple menu > System Settings, then click Notifications in the sidebar.
-
-   <p align="center">
-     <img alt="Installer first view" src="./assets/enable-notifications.png" width="350"/>
-   </p>
-
-### Installing Application via command line
-
-To install a .pkg file on macOS from the command line, follow these steps:
-
- ```bash
-curl -L -o /tmp/package.pkg https://github.com/Ironchip-Security/Ironchip-MAC-Authenticator/releases/download/1.0.0/ironchip_authenticator_1.0.0_arm64.pkg && sudo installer -pkg /tmp/package.pkg -target /
- ```
-Make sure that the URL corresponds with to a valid version of the package.
-
 ### Uninstalling Application
+To uninstall the application:
+
+  ```bash
+     sudo dpkg -r ironchip-authenticator
+  ```
 
 To uninstall the application from your Mac, follow these steps:
 
-1. **Open Terminal**:
-   - You can find Terminal in `Applications > Utilities > Terminal`.
-
-2. **Run the Uninstall Command**:
-   - Type the following command in Terminal and press `Enter`:
-   
-     ```bash
-     sudo ironchip uninstall
-     ```
    - You will be prompted to enter your administrator password.
 
 ### How to disable USB
-  
-  1. **Open Terminal**:
-   - You can find Terminal in `Applications > Utilities > Terminal`.
 
-  2. **Run the Command**:
+  **Run the Command**:
    - Type the following command in Terminal and press `Enter`:
    
      ```bash
-     sudo ironchip configure --restrict-usb=true
+     sudo ironchip-service configure --restrict-usb=true
      ```
    - You will be prompted to enter your administrator password.
 
 ### How to enable proxy
   Automatic Proxy: If you enable this option, the application will use the proxy configured in the system.
-  
-  1. **Open Terminal**:
-   - You can find Terminal in `Applications > Utilities > Terminal`.
 
-  2. **Run the Command**:
+  **Run the Command**:
    - Type the following command in Terminal and press `Enter`:
    
      ```bash
-       sudo ironchip configure --proxy-enable=true
+       sudo ironchip-service configure --proxy-enable=true
      ```
      Manual Proxy: If you prefer to configure the proxy manually, the application will take the proxy details from the config.json file.
 
-    ```bash
-      sudo ironchip configure --proxy-manual=true --proxy-manual-uri 127.0.0.1:8080
+  ```bash
+      sudo ironchip-service configure --proxy-manual=true --proxy-manual-uri 127.0.0.1:8080
+  ```
 
